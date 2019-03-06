@@ -8,38 +8,33 @@ import (
 	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc/status"
 	"grpc_test/blog/blogpb"
+	"grpc_test/blog/dbs"
 	"log"
 	"net"
-	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
 	"os"
 	"os/signal"
 )
-
-var Conns *sql.DB
 
 type server struct {
 }
 
 type blogItem struct {
-	Id 	int64 `json:"id" form:"id"`
-	AuthorId int64 `json:"author_id" form:"author_id"`
-	Title string `json:"title" form:"title"`
-	Content string `json:"content" form:"content"`
+	Id       int64  `json:"id" form:"id"`
+	AuthorId int64  `json:"author_id" form:"author_id"`
+	Title    string `json:"title" form:"title"`
+	Content  string `json:"content" form:"content"`
 }
 
 func (*server) CreateBlog(cxt context.Context, req *blogpb.CreateBlogRequest) (*blogpb.CreateBlogResponse, error) {
 	fmt.Println("Create blog request")
 
-	fmt.Println(Conns)
-
 	blog := req.GetBlog()
 	data := blogItem{
-		AuthorId: 	blog.GetAuthorId(),
-		Title:		blog.GetTitle(),
-		Content:	blog.GetContent(),
+		AuthorId: blog.GetAuthorId(),
+		Title:    blog.GetTitle(),
+		Content:  blog.GetContent(),
 	}
-	res, err := Conns.Exec("INSERT INTO blog (author_id, title, content) VALUES (?, ?, ?)", data.AuthorId, data.Title, data.Content)
+	res, err := dbs.Conns.Exec("INSERT INTO blog (author_id, title, content) VALUES (?, ?, ?)", data.AuthorId, data.Title, data.Content)
 	if err != nil {
 		return nil, status.Errorf(
 			codes.Internal,
@@ -64,7 +59,7 @@ func (*server) ReadBlog(cxt context.Context, req *blogpb.ReadBlogRequest) (*blog
 	fmt.Println("Read blog request")
 	blog := blogItem{}
 	blogId := req.GetBlogId()
-	err := Conns.QueryRow("SELECT * FROM blog WHERE id=? LIMIT 1", blogId).Scan(&blog.Id, &blog.AuthorId, &blog.Title, &blog.Content)
+	err := dbs.Conns.QueryRow("SELECT * FROM blog WHERE id=? LIMIT 1", blogId).Scan(&blog.Id, &blog.AuthorId, &blog.Title, &blog.Content)
 	if err != nil {
 		return nil, status.Errorf(
 			codes.Internal,
@@ -72,7 +67,7 @@ func (*server) ReadBlog(cxt context.Context, req *blogpb.ReadBlogRequest) (*blog
 		)
 	}
 	return &blogpb.ReadBlogResponse{
-		Blog:dataToBlogPb(&blog),
+		Blog: dataToBlogPb(&blog),
 	}, nil
 }
 
@@ -86,7 +81,7 @@ func (*server) UpdateBlog(cxt context.Context, req *blogpb.UpdateBlogRequest) (*
 	data.Title = blog.GetTitle()
 	data.Content = blog.GetContent()
 
-	res, err := Conns.Prepare("UPDATE blog SET author_id=?,title=?,content=? WHERE id=?")
+	res, err := dbs.Conns.Prepare("UPDATE blog SET author_id=?,title=?,content=? WHERE id=?")
 	defer res.Close()
 	if err != nil {
 		return nil, status.Errorf(
@@ -95,7 +90,7 @@ func (*server) UpdateBlog(cxt context.Context, req *blogpb.UpdateBlogRequest) (*
 		)
 	}
 
-	rs, err := res.Exec(data.Id, data.Title, data.Content, data.Id)
+	rs, err := res.Exec(data.AuthorId, data.Title, data.Content, data.Id)
 	if err != nil {
 		return nil, status.Errorf(
 			codes.InvalidArgument,
@@ -117,7 +112,7 @@ func (*server) UpdateBlog(cxt context.Context, req *blogpb.UpdateBlogRequest) (*
 func (*server) DeleteBlog(cxt context.Context, req *blogpb.DeleteBlogRequest) (*blogpb.DeleteBlogResponse, error) {
 	fmt.Println("Delete blog request")
 	blogId := req.GetBlogId()
-	rs, err := Conns.Exec("DELETE FROM blog WHERE id=?", blogId)
+	rs, err := dbs.Conns.Exec("DELETE FROM blog WHERE id=?", blogId)
 	if err != nil {
 		log.Fatalln(err)
 		return nil, status.Errorf(
@@ -139,7 +134,7 @@ func (*server) DeleteBlog(cxt context.Context, req *blogpb.DeleteBlogRequest) (*
 func (*server) ListBlog(req *blogpb.ListBlogRequest, stream blogpb.BlogService_ListBlogServer) error {
 	fmt.Println("List blog request")
 
-	rows, err := Conns.Query("SELECT * FROM blog")
+	rows, err := dbs.Conns.Query("SELECT * FROM blog")
 	defer rows.Close()
 	if err != nil {
 		return status.Errorf(
@@ -166,15 +161,6 @@ func dataToBlogPb(data *blogItem) *blogpb.Blog {
 }
 
 func main() {
-	fmt.Print("Connecting to mysql")
-
-	Conns, _ = sql.Open("mysql", "root:123456@tcp(192.168.33.11)/test")
-	fmt.Println(Conns)
-
-	err := Conns.Ping()
-	if err != nil {
-		log.Fatal(err.Error())
-	}
 
 	fmt.Println("Blog Service Started")
 
@@ -191,9 +177,16 @@ func main() {
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 
-	if err := s.Serve(lis); err != nil {
+	go func() {
+		fmt.Println("Starting Server...")
+		if err := s.Serve(lis); err != nil {
+			log.Fatalf("failed to serve: %v", err)
+		}
+	}()
+
+	/*if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
-	}
+	}*/
 
 	// Wait for Control C to exit
 	ch := make(chan os.Signal, 1)
@@ -205,7 +198,7 @@ func main() {
 	s.Stop()
 	fmt.Println("Closing the listener")
 	lis.Close()
-	fmt.Println("Closing MongoDB Connection")
-	Conns.Close()
+	fmt.Println("Closing mysql Connection")
+	dbs.Conns.Close()
 	fmt.Println("End of Program")
 }
