@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56532a21-59c8-48fc-8efe-3d1aa50178d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/greet/greet_client/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/greet/greet_server/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/greet/greetpb/greet.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/calculator/calculator_client/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/calculator/calculator_server/server.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/calculator/calculatorpb/calculator.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,15 +15,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blog/blogpb/blog.proto">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="57" column="18" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/blog/blog_server/main.go">
           <provider selected="true" editor-type-id="text-editor">
@@ -51,16 +42,48 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/greet/greet_client/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1030">
+            <state relative-caret-position="-10">
               <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
               <folding>
                 <element signature="e#14#57#0" expanded="true" />
-                <element signature="n#!!block;n#doUnary#0" />
-                <element signature="n#!!block;n#doServerSteaming#0" />
-                <element signature="n#!!block;n#doBiDiStreaming#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/calculator/calculatorpb/calculator.proto">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/calculator/calculator_server/server.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="113" column="44" lean-forward="true" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
+              <folding>
+                <element signature="e#14#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/calculator/calculator_client/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+              <folding>
+                <element signature="e#14#57#0" expanded="true" />
+                <element signature="n#!!block;n#doServerStreaming#0" />
+                <element signature="n#!!block;n#doClentStreaming#0" />
               </folding>
             </state>
           </provider>
@@ -71,15 +94,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-119">
               <caret line="82" column="14" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/blog/dbs/mysql.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -137,6 +151,9 @@
         <option value="$PROJECT_DIR$/greet/greet_server/server.go" />
         <option value="$PROJECT_DIR$/greet/greetpb/greet.proto" />
         <option value="$PROJECT_DIR$/greet/greet_client/main.go" />
+        <option value="$PROJECT_DIR$/calculator/calculatorpb/calculator.proto" />
+        <option value="$PROJECT_DIR$/calculator/calculator_server/server.go" />
+        <option value="$PROJECT_DIR$/calculator/calculator_client/main.go" />
       </list>
     </option>
   </component>
@@ -163,30 +180,19 @@
             <path>
               <item name="grpc_test" type="b2602c69:ProjectViewProjectNode" />
               <item name="grpc_test" type="462c0819:PsiDirectoryNode" />
-              <item name="blog" type="462c0819:PsiDirectoryNode" />
+              <item name="calculator" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="grpc_test" type="b2602c69:ProjectViewProjectNode" />
               <item name="grpc_test" type="462c0819:PsiDirectoryNode" />
-              <item name="blog" type="462c0819:PsiDirectoryNode" />
-              <item name="blog_server" type="462c0819:PsiDirectoryNode" />
+              <item name="calculator" type="462c0819:PsiDirectoryNode" />
+              <item name="calculator_client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="grpc_test" type="b2602c69:ProjectViewProjectNode" />
               <item name="grpc_test" type="462c0819:PsiDirectoryNode" />
-              <item name="greet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="grpc_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grpc_test" type="462c0819:PsiDirectoryNode" />
-              <item name="greet" type="462c0819:PsiDirectoryNode" />
-              <item name="greet_client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="grpc_test" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grpc_test" type="462c0819:PsiDirectoryNode" />
-              <item name="greet" type="462c0819:PsiDirectoryNode" />
-              <item name="greetpb" type="462c0819:PsiDirectoryNode" />
+              <item name="calculator" type="462c0819:PsiDirectoryNode" />
+              <item name="calculator_server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="grpc_test" type="b2602c69:ProjectViewProjectNode" />
@@ -221,7 +227,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go (1)">
+  <component name="RunManager" selected="Go Build.go build main.go (2)">
     <configuration name="go build client.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="grpc_test" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -240,6 +246,15 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
+    <configuration name="go build main.go (2)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="grpc_test" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/calculator/calculator_client/main.go" />
+      <package value="grpc_test" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="grpc_test" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -251,6 +266,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build main.go (2)" />
         <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Build.go build client.go" />
         <item itemvalue="Go Build.go build main.go" />
@@ -266,7 +282,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46385542" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3060241" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -274,7 +290,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.48795182" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.2" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -288,7 +304,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="跟新文档" />
     <MESSAGE value="grpc 流的概念更新一波" />
-    <option name="LAST_COMMIT_MESSAGE" value="grpc 流的概念更新一波" />
+    <MESSAGE value="go golang例子在更新一波" />
+    <option name="LAST_COMMIT_MESSAGE" value="go golang例子在更新一波" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///usr/local/go/src/database/sql/sql.go">
@@ -376,13 +393,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/greet/greet_client/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1030">
+        <state relative-caret-position="-10">
           <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
           <folding>
             <element signature="e#14#57#0" expanded="true" />
-            <element signature="n#!!block;n#doUnary#0" />
-            <element signature="n#!!block;n#doServerSteaming#0" />
-            <element signature="n#!!block;n#doBiDiStreaming#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculator/calculatorpb/calculator.proto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculator/calculator_server/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="113" column="44" lean-forward="true" selection-start-line="113" selection-start-column="44" selection-end-line="113" selection-end-column="44" />
+          <folding>
+            <element signature="e#14#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calculator/calculator_client/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+          <folding>
+            <element signature="e#14#57#0" expanded="true" />
+            <element signature="n#!!block;n#doServerStreaming#0" />
+            <element signature="n#!!block;n#doClentStreaming#0" />
           </folding>
         </state>
       </provider>
